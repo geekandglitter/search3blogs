@@ -1,0 +1,25 @@
+{% extends "base" %}
+
+{% block content %}
+<div style=width:600px;>
+ 
+<p>
+
+</p>
+<br>
+ 
+ <span style="font-size:15px">
+ 
+   <b><a href="/modelsearch">Fast Search! Type in any word(s), separated by commas</a></b>	 
+	<br><small>Shows results in order of relevance, which is based on number of criteria met. Can type ingredients or even
+	 kitchen tools. Note: this is a work in progress. If you add a trailing comma, it will crap out.
+	</small> 
+</span>   
+ 
+
+</div>
+{% endblock content %}
+
+
+
+
