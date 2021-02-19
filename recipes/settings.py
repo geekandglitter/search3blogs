@@ -22,6 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # this l
 
 
 # OPEN SECRETS: This loads the secret json file. Found this solution on SO.###############
+'''
 with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
     secrets = json.load(secrets_file)
 
@@ -34,8 +35,9 @@ def get_secret(setting, my_secrets=secrets):  # Get secret setting or fail with 
 
 
 SECRET_KEY = get_secret("SECRET_KEY")  # SECRET_KEY is always in settings.py. Get its contents
-
-
+'''
+ 
+SECRET_KEY = os.getenv('SECRET_KEY')
 APPSEARCH_USE_HTTPS = False
 APPSEARCH_HOST = 'localhost:3002'
 APPSEARCH_API_KEY = 'private-key'
@@ -50,7 +52,7 @@ APPSEARCH_INDEXING_ENABLED = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['stayathomegeek.pythonanywhere.com', '127.0.0.1', 'thecattycook.geekandglitter.repl.co']
+#ALLOWED_HOSTS = ['stayathomegeek.pythonanywhere.com', '127.0.0.1', 'thecattycook.geekandglitter.repl.co']
 
 
 INSTALLED_APPS = [
@@ -108,12 +110,13 @@ DATABASES = {
     }
 }
 """
+pw = os.getenv('DB_PASSWORD')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'gxillviv',
         'USER': 'gxillviv',
-        'PASSWORD': get_secret('DB_PASSWORD'), # this is in secrets file
+        'PASSWORD': pw,
         'HOST': 'pellefant.db.elephantsql.com',
         'PORT': '5432',
     }
@@ -184,6 +187,6 @@ STATICFILES_DIRS = (   # tells your devserver where the static files are
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 '''
 
-
+X_FRAME_OPTIONS='*'
 
 
