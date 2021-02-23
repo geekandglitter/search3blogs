@@ -4,15 +4,22 @@ from django.contrib import admin
 from django.apps import apps # this will allow me to auto-register all models not already registered (at the end)
  
 from .models import SearchTerms
-from .models import AllRecipes
+from .models import AllPosts
 from .models import AllContents
 
+# The next two lines of code eliminate the annoying "recent actions"
+# from the admin page.
+from django.contrib.admin.models import LogEntry
+LogEntry.objects.all().delete()
+ 
 
 # Below, I am telling the Django admin site that we are using a custom class. It shows how to display the model in
 # the admin site.
-class RecipeAdmin(admin.ModelAdmin): # I think this overrides Admin defaults
+ 
+
+class PostAdmin(admin.ModelAdmin): # I think this overrides Admin defaults
 	"""
-	Here's where I customize Admin for the AllRecipes model
+	Here's where I customize Admin for the AllPosts model
 	"""
  
 	
@@ -21,6 +28,7 @@ class RecipeAdmin(admin.ModelAdmin): # I think this overrides Admin defaults
 	search_fields = ('anchortext', 'hyperlink', 'id')
 	list_max_show_all = 500
 	list_per_page = 500
+  
 
 
 class SearchAdmin(admin.ModelAdmin): # I think this overrides Admin defaults
@@ -41,7 +49,7 @@ class AllContentsAdmin(admin.ModelAdmin):
 	list_per_page = 1000
 
 
-admin.site.register(AllRecipes, RecipeAdmin) 
+admin.site.register(AllPosts, PostAdmin) 
 admin.site.register(SearchTerms, SearchAdmin)
 admin.site.register(AllContents, AllContentsAdmin)
  

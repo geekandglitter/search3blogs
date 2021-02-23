@@ -115,7 +115,7 @@
     Search 3 Blogs
     </a>
     </h1>
-    <span style="font-size: 24x; font-style: italic">Recipe blog extension written in Python/Django
+    <span style="font-size: 24x; font-style: italic">Post blog extension written in Python/Django
         because that's my idea of a good time. Extend me some grace; I am a backend developer trying to create 
         a fullstack web app. (In plain English, I don't specialize in how things look on the screen.)
 

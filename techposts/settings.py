@@ -10,51 +10,42 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-import json  # we will use json to build an external secrets file that stays untracked
+#import json  # we will use json to build an external secrets file that stays untracked
 import os  # this python package's functions allow interface with the OS: Windows, Mac or Linux to access to the path
-from django.core.exceptions import ImproperlyConfigured  # used by get_secret
+#from django.core.exceptions import ImproperlyConfigured  # used by get_secret
 
 # BASE_DIR: This is always needed in settings. Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # this line is always needed in settings.py.
+BASE_DIR = os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__)))  # this line is always needed in settings.py.
 # It shows where manage.py is.
 #print("The BASE_DIR is", BASE_DIR)
 
-
-
 # OPEN SECRETS: This loads the secret json file. Found this solution on SO.###############
-'''
-with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
-    secrets = json.load(secrets_file)
 
+#with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+#    secrets = json.load(secrets_file)
 
-def get_secret(setting, my_secrets=secrets):  # Get secret setting or fail with ImproperlyConfigured
-    try:
-        return my_secrets[setting]
-    except KeyError:
-        raise ImproperlyConfigured("Set the {} setting".format(setting))
+#def get_secret(setting, my_secrets=secrets):  # Get secret setting #or fail with ImproperlyConfigured
+#    try:
+#        return my_secrets[setting]
+#    except KeyError:
+#        raise ImproperlyConfigured("Set the {} setting".format(setting))
 
+##SECRET_KEY = get_secret("SECRET_KEY")  # SECRET_KEY is always in settings.py. Get its contents
 
-SECRET_KEY = get_secret("SECRET_KEY")  # SECRET_KEY is always in settings.py. Get its contents
-'''
- 
 SECRET_KEY = os.getenv('SECRET_KEY')
+print("secret key is", SECRET_KEY) 
+
 APPSEARCH_USE_HTTPS = False
 APPSEARCH_HOST = 'localhost:3002'
 APPSEARCH_API_KEY = 'private-key'
 APPSEARCH_CHUNK_SIZE = 50
 APPSEARCH_INDEXING_ENABLED = True
- 
-
-
-
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 #ALLOWED_HOSTS = ['stayathomegeek.pythonanywhere.com', '127.0.0.1', 'thecattycook.geekandglitter.repl.co']
-
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -63,12 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
-    'recipes',
-  
-  
-
+    'techposts',
 ]
- 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,7 +67,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'recipes.urls'
+ROOT_URLCONF = 'techposts.urls'
 
 TEMPLATES = [
     {
@@ -98,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'recipes.wsgi.application'
+WSGI_APPLICATION = 'techposts.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -121,43 +108,24 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-"""
-
-
-
-
-
-
-
-
-
-
-
-
  
-DATABASES = {
-   ‘default’: {
-      ‘ENGINE’: ‘djongo’,
-      ‘NAME’: ‘your-db-name’,
-   }
-}
-"""
-# Password validation
-# https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -179,14 +147,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
- 
-STATICFILES_DIRS = (   # tells your devserver where the static files are
+STATICFILES_DIRS = (  # tells your devserver where the static files are
     os.path.join(BASE_DIR, 'static'),  # Linda added this
 )
 ''' 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 '''
 
-X_FRAME_OPTIONS='*'
-
-
+X_FRAME_OPTIONS = '*'

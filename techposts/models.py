@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
  
 
-class AllRecipes(models.Model):
+class AllPosts(models.Model):
     '''
     This model holds hyperlinks (hrefs with anchor text)
     These hyperlinks are then easily displayed in a template
@@ -16,7 +16,7 @@ class AllRecipes(models.Model):
     
     
     class Meta: # this eliminates the extra "s" added to the model name
-        verbose_name_plural = "AllRecipes"
+        verbose_name_plural = "AllPosts"
         ordering = ['anchortext']    # alphabetical order    
      
     def __str__(self):
