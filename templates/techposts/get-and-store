@@ -1,7 +1,7 @@
 {% extends "base" %}
 
 {% block content %}
-  <h1>Django Joy</h1>
+  <h1>Results</h1>
   <h2>{{count}} Posts from Google API Json</h2> 
   <p>Similar to blogger APIget but then it stores the URL's in a model, one hylink per record. The records are also shown here</p>
   <p>{{allofit  | safe}}</p>

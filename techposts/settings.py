@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 #import json  # we will use json to build an external secrets file that stays untracked
 import os  # this python package's functions allow interface with the OS: Windows, Mac or Linux to access to the path
 #from django.core.exceptions import ImproperlyConfigured  # used by get_secret
+from dotenv import load_dotenv
+load_dotenv()
 
 # BASE_DIR: This is always needed in settings. Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(

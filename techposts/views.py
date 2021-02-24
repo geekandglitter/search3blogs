@@ -32,11 +32,17 @@ def get_and_store_view(request):
     '''
     def request_by_year(edate, sdate):
         # Initially I did the entire request at once, but I had to chunk it into years because it was timing out in windows.
-
+        '''
+        # Django Joy:
         url = "https://www.googleapis.com/blogger/v3/blogs/4018409536126807518/posts?endDate=" + edate + "&fetchBodies=false&maxResults=500&startDate=" + \
             sdate + \
             "&status=live&view=READER&fields=items(title%2Curl)&key=AIzaSyDleLQNXOzdCSTGhu5p6CPyBm92we3balg"
+        '''
 
+        # Speaking Python: 
+        url = "https://www.googleapis.com/blogger/v3/blogs/8358870650052717118/posts?endDate=" + edate + "&fetchBodies=false&maxResults=500&startDate=" + \
+            sdate + \
+            "&status=live&view=READER&fields=items(title%2Curl)&key=AIzaSyDleLQNXOzdCSTGhu5p6CPyBm92we3balg"
         r = requests.get(url, stream=True)
         q = json.loads(r.text)  # this is the better way to unstring it
         if not q:
@@ -60,7 +66,7 @@ def get_and_store_view(request):
     counter = 0
     newstring = " "
     # Now we get ready to update the database
-    AllPosts.objects.all().delete()  # clear the table
+    #AllPosts.objects.all().delete()  # clear the table
     for mylink in sorteditems:
          
         counter += 1
