@@ -36,7 +36,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(
 ##SECRET_KEY = get_secret("SECRET_KEY")  # SECRET_KEY is always in settings.py. Get its contents
 
 SECRET_KEY = os.getenv('SECRET_KEY')
-print("secret key is", SECRET_KEY) 
+ 
 
 APPSEARCH_USE_HTTPS = False
 APPSEARCH_HOST = 'localhost:3002'

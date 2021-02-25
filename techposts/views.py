@@ -25,22 +25,23 @@ def errors_view(request):
 ####################################################
 # This view uses the blogger API to get all the posts and stores them in the db
 ###################################################
-
 def get_and_store_view(request):
-    '''
-    Uses the blogger API and the requests module to get all the posts, and stores one post per record in the database   
-    '''
+  '''
+  Uses the blogger API and the requests module to get all the posts, and stores one post per record in the database   
+  '''
+  AllPosts.objects.all().delete()  # clear the table
+  newstring = " " # newstring lets us put out something to the screen
+  counter = 0
+  for blogid in ['4018409536126807518', '8358870650052717118', '3338358600077930557']:
+    
     def request_by_year(edate, sdate):
         # Initially I did the entire request at once, but I had to chunk it into years because it was timing out in windows.
-        '''
-        # Django Joy:
-        url = "https://www.googleapis.com/blogger/v3/blogs/4018409536126807518/posts?endDate=" + edate + "&fetchBodies=false&maxResults=500&startDate=" + \
-            sdate + \
-            "&status=live&view=READER&fields=items(title%2Curl)&key=AIzaSyDleLQNXOzdCSTGhu5p6CPyBm92we3balg"
-        '''
-
+     
+        
         # Speaking Python: 
-        url = "https://www.googleapis.com/blogger/v3/blogs/8358870650052717118/posts?endDate=" + edate + "&fetchBodies=false&maxResults=500&startDate=" + \
+        url = "https://www.googleapis.com/blogger/v3/blogs/" + \
+        blogid + \
+        "/posts?endDate=" + edate + "&fetchBodies=false&maxResults=500&startDate=" + \
             sdate + \
             "&status=live&view=READER&fields=items(title%2Curl)&key=AIzaSyDleLQNXOzdCSTGhu5p6CPyBm92we3balg"
         r = requests.get(url, stream=True)
@@ -63,10 +64,10 @@ def get_and_store_view(request):
     #sorteditems = sorted(accum_list, key=itemgetter('title'), reverse=True)
     sorteditems = sorted(accum_list, key=itemgetter('title'))
     sorteditems.reverse()
-    counter = 0
-    newstring = " "
+ 
+  
     # Now we get ready to update the database
-    #AllPosts.objects.all().delete()  # clear the table
+    
     for mylink in sorteditems:
          
         counter += 1
@@ -80,7 +81,7 @@ def get_and_store_view(request):
         )
         newrec.save()
 
-    return render(request, 'techposts/get-and-store', {'allofit': newstring, 'count': counter}) 
+  return render(request, 'techposts/get-and-store', {'allofit': newstring, 'count': counter})   
 ############################################# 
 def scrapecontents_view(request):
     '''
@@ -98,7 +99,7 @@ def scrapecontents_view(request):
     # First, get all the urls from AllPosts
     instance = AllPosts.objects.filter().values_list('url', 'anchortext')
     from django.db import IntegrityError
-    # For now, I'm starting over each time, by emptying out AllContents
+    # I'm starting over each time, by emptying out AllContents
     AllContents.objects.all().delete()  # clear the table 
     for hyper, title in instance: 
          
@@ -116,17 +117,15 @@ def scrapecontents_view(request):
             )
         except IntegrityError:
             return render(request, 'techposts/error_page')    
-        newrec.save()
-      
-
-             
+        newrec.save()   
     return render(request, 'techposts/scrapecontents')
 
 
 ############# 
 def modelsearch_view(request):
-    '''      
-    Below I query using values_list(). The alternative would have been values() which creates a nice dictionary,
+    '''  
+    This is the view that searches the model, also known as the database, also called the search index.
+    I query using values_list(). The alternative would have been values() which creates a nice dictionary,
     which should be easier because I can see the keywords, but whatever. So instead I am referring to the indices:
     [0] # search terms
     [1] # url
