@@ -8,6 +8,7 @@ import datetime as d
 from .forms import PostForm
 from .models import AllContents
 from techposts.utils import search_func # this function does the model query heavy lifting for modelsearch_view    
+from django.views.generic.list import ListView
 ###################################################
 # Home (Index page)
 ################################################### 
@@ -171,4 +172,14 @@ def modelsearch_view(request):
             context = {'form': form}         
     else: # This code executes the first time this view is run. It shows an empty form to the user  
         context = {'form': form}     
-    return render(request, 'techposts/modelsearch', context)   
+    return render(request, 'techposts/modelsearch', context)
+
+#################################################################################
+# CLASS BASED VIEW Now retrieve the models using class-based views (ListView) 
+#################################################################################
+class ModelList(ListView): # ListView doesn't have a template
+
+    model = AllPosts  # This tells Django which model to create listview for
+    # I left all the defaults.
+    # The default name of the queryset is object_list. It can be changed like this: context_object_name='all_model_recipes' 
+    # The default template becomes allrecipes_list.html   

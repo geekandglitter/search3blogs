@@ -28,6 +28,9 @@
 	<li><a href = "/scrapecontents">Scrape all post contents and stuff them in a model.</a><small>
 	<br>This is a simple crawler. Its purpose is to create an index of all three posts, similarly to how Google works. I run it manually from time to time to keep the search index up to date. That way, when the above search function is run, it doesn't actually go looking in the three blogs. Instead, it searches the index which is fast because it's in a database. It's a lot faster than a rifle search. This view
 	 relies on the blog posts retrieved in the above view.</small></li>    
+   <li><a href="retrieve-recipes-classbased">Retrieve the URL's from the model</a> <br><small>Uses a class based view. This 
+	view has no path, so it's "retrieve-recipes-classbased". Note that class-based is faster than functional.
+	</small></li>   
 
      
  
