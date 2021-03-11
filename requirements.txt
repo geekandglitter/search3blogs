@@ -1,6 +1,7 @@
 autopep8
 bs4
 django
+python-dotenv
 feedparser
 ipaddress
 lxml

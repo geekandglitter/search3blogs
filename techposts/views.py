@@ -142,7 +142,7 @@ def modelsearch_view(request):
             if form.data['user_search_terms'][-1] == ",": # Ditch any trailing commas          
            
                 form.data['user_search_terms'] = form.data['user_search_terms'][:-1]
-                i = 1
+                
                 while True:
                     if form.data['user_search_terms'][-1] == ",":
                         form.data['user_search_terms'] = form.data['user_search_terms'][:-1]
@@ -175,7 +175,7 @@ def modelsearch_view(request):
     return render(request, 'techposts/modelsearch', context)
 
 #################################################################################
-# CLASS BASED VIEW Now retrieve the models using class-based views (ListView) 
+# CLASS BASED VIEW Now retrieve the postss using a class-based view (ListView) 
 #################################################################################
 class ModelList(ListView): # ListView doesn't have a template
 
