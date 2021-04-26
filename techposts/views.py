@@ -33,7 +33,7 @@ def get_and_store_view(request):
   AllPosts.objects.all().delete()  # clear the table
   newstring = " " # newstring lets us put out something to the screen
   counter = 0
-  for blogid in ['4018409536126807518', '8358870650052717118', '3338358600077930557']:
+  for blogid in ['4018409536126807518', '8358870650052717118', '3338358600077930557', '3984132750383546180']:
     
     def request_by_year(edate, sdate):
         # Initially I did the entire request at once, but I had to chunk it into years because it was timing out in windows.
