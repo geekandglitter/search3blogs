@@ -112,14 +112,17 @@
     <div class='titlewrapper'>
     <h1 class='title'>
     <a href='https://djangojoy.blogspot.com/'>
-    Search 3 Blogs
+    Search 4 Blogs
     </a>
     </h1>
     <span style="font-size: 24x; font-style: italic">Post blog extension written in Python/Django
         because that's my idea of a good time. Extend me some grace; I am a backend developer trying to create 
         a fullstack web app. (In plain English, I don't specialize in how things look on the screen.)
-
-           <br> <br><a href="https://djangojoy.blogspot.com/">Go directly to the Django Joy blog</a></span>
+           <br> <br><a href="https://computerish1.blogspot.com/">Go directly to the Computerish blog</a>
+           <br> <a href="https://djangojoy.blogspot.com/">Go directly to the Django Joy blog</a>        
+           <br><a href="https://www.geekaroundthehouse.com/">Go directly to the Geek Around the House blog</a>
+           <br><a href="https://speakingpython.blogspot.com/">Go directly to the Speaking Python blog</a>
+    </span>
     </div>
 
     </div>

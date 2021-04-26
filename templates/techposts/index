@@ -6,7 +6,7 @@
 <p>
 
 </p>
-<br>
+ 
  
  <span style="font-size:15px">
  
@@ -22,7 +22,7 @@
 <ol> 			 
 	 
 
-	<li><a href="/get-and-store">Find all posts in all three blogs </a></b><br><small>Uses requests to get
+	<li><a href="/get-and-store">Find all posts in all four blogs </a></b><br><small>Uses requests to get
 	all the post urls from Google Blogger API,  then store them, one record per post, in a model	(a postgres database). This will be used for the scraping below</small></li>
 
 	<li><a href = "/scrapecontents">Scrape all post contents and stuff them in a model.</a><small>
